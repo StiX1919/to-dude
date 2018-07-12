@@ -1,0 +1,1 @@
+INSERT INTO test (name, password) VALUES ($1, $2)

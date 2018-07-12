@@ -1,0 +1,1 @@
+DELETE FROM test where name = $1 and password = $2 

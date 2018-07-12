@@ -66,20 +66,21 @@ class App extends Component {
     let people = this.state.people.map((person, index) => {
       return <div>
         {index === this.state.editIndex &&
-          <div>
+          <div className='editFriend'>
             <input value={this.state.newName} onChange={e => this.editName(e)}/>
             <button onClick={() => this.saveNewName(this.state.newName, person.id)}>Save</button>
+            <h3 onClick={() => this.deleteUser(person.name, person.password)}>X</h3>
             <h3 onClick={() => this.nameIndex(null)}>Cancle</h3>
           </div>
         }
         {index !== this.state.editIndex &&
-          <div>
-            <h1>{person.name}</h1>
+          <div className='editFriend'>
+            <h2>{person.name}</h2>
             <h3 onClick={() => this.nameIndex(index, person.name)}>Edit</h3>
           </div>
         }
         
-        <h3 onClick={() => this.deleteUser(person.name, person.password)}>X</h3>
+        
       </div>
     })
 
@@ -89,10 +90,13 @@ class App extends Component {
           <img src={this.state.dailyPokemon !== null ? this.state.dailyPokemon.sprites.front_default : logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <div>
-          {people}
+        <div className='content'>
+          <div className='friendBox'>
+            <h1>My friends...</h1>
+            {people}
+          </div>
+          <AddPerson submitData={this.submitData}/>
         </div>
-        <AddPerson submitData={this.submitData}/>
       </div>
     );
   }

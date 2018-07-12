@@ -64,17 +64,17 @@ class App extends Component {
   render() {
 
     let people = this.state.people.map((person, index) => {
-      return <div>
+      return <div className='editFriend'>
         {index === this.state.editIndex &&
-          <div className='editFriend'>
+          <div className='indFriend'>
             <input value={this.state.newName} onChange={e => this.editName(e)}/>
             <button onClick={() => this.saveNewName(this.state.newName, person.id)}>Save</button>
-            <h3 onClick={() => this.deleteUser(person.name, person.password)}>X</h3>
+            <h4 onClick={() => this.deleteUser(person.name, person.password)}>X</h4>
             <h3 onClick={() => this.nameIndex(null)}>Cancle</h3>
           </div>
         }
         {index !== this.state.editIndex &&
-          <div className='editFriend'>
+          <div className='indFriend'>
             <h2>{person.name}</h2>
             <h3 onClick={() => this.nameIndex(index, person.name)}>Edit</h3>
           </div>
@@ -88,14 +88,16 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={this.state.dailyPokemon !== null ? this.state.dailyPokemon.sprites.front_default : logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Friend List thing</h1>
         </header>
         <div className='content'>
           <div className='friendBox'>
             <h1>My friends...</h1>
             {people}
           </div>
-          <AddPerson submitData={this.submitData}/>
+          <div className='newFriend'>
+            <AddPerson submitData={this.submitData}/>
+          </div>
         </div>
       </div>
     );

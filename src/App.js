@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       people: [],
       editIndex: null,
-      newName: ''
+      newName: '',
+      dailyPokemon: null
     }
 
     this.submitData = this.submitData.bind(this)
@@ -28,6 +29,10 @@ class App extends Component {
     axios.get('http://localhost:3000/api/getPeople').then(response => {
       console.log(response, 'response')
       this.setState({people: response.data})
+    })
+    axios.get('http://localhost:3000/api/getPokemon').then(response => {
+      console.log(response.data)
+      this.setState({dailyPokemon: response.data})
     })
   }
 
@@ -81,7 +86,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={this.state.dailyPokemon !== null ? this.state.dailyPokemon.sprites.front_default : logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <div>

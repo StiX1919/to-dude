@@ -2,12 +2,13 @@ const express = require('express')
 const { json } = require('body-parser');
 const cors = require('cors');
 const massive = require('massive');
+const axios = require('axios')
 
 const {
     getPeople,
     addPerson,
     deletePerson,
-    editName
+    editName,
 } = require('./controllers/mainController')
 
 require('dotenv').config();
@@ -35,6 +36,17 @@ app.put('/api/addPerson/:name/:pass', addPerson)
 app.delete('/api/deletePerson/:name/:pass', deletePerson)
 
 app.post('/api/editName', editName)
+
+app.get('/api/getPokemon', (req, res, next) => {
+    let pokenum = Math.floor(Math.random() * 152)
+    console.log('serverHit', pokenum)
+    axios.get(`http://pokeapi.co/api/v2/pokemon/${pokenum}`).then(response => {
+        console.log(response, 'guy')
+        return res.status(200).json(response.data)
+    })
+    .catch(console.log)
+})
+
 
 
 

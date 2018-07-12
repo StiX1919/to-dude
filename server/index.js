@@ -6,7 +6,8 @@ const massive = require('massive');
 const {
     getPeople,
     addPerson,
-    deletePerson
+    deletePerson,
+    editName
 } = require('./controllers/mainController')
 
 require('dotenv').config();
@@ -30,8 +31,10 @@ app.use(cors());
 
 app.get('/api/getPeople', getPeople)
 
-app.post('/api/addPerson/:name/:pass', addPerson)
+app.put('/api/addPerson/:name/:pass', addPerson)
 app.delete('/api/deletePerson/:name/:pass', deletePerson)
+
+app.post('/api/editName', editName)
 
 
 

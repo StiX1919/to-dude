@@ -34,6 +34,20 @@ module.exports = {
                 console.log(newRes)
             })
         })
-    }
+    },
+
+    editName: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        const {newName, id} = req.body
+        console.log(newName, 'req.params')
+
+        dbInstance.editName([newName, id])
+        .then( response => {
+            dbInstance.getUsers().then( newRes => {
+                return res.status(200).json(newRes)
+                console.log(newRes)
+            })
+        })
+    },
     
 }

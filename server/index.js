@@ -38,7 +38,7 @@ app.delete('/api/deletePerson/:name/:pass', deletePerson)
 app.post('/api/editName', editName)
 
 app.get('/api/getPokemon', (req, res, next) => {
-    let pokenum = Math.floor(Math.random() * 152)
+    let pokenum = Math.floor(Math.random() * 301)
     console.log('serverHit', pokenum)
     axios.get(`http://pokeapi.co/api/v2/pokemon/${pokenum}`).then(response => {
         console.log(response, 'guy')

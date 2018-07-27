@@ -25,7 +25,7 @@ class App extends Component {
   }
 
 
-  componentWillMount(){
+  componentDidMount(){
     axios.get('http://localhost:3000/api/getPeople').then(response => {
       console.log(response, 'response')
       this.setState({people: response.data})
